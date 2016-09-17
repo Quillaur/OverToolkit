@@ -21,7 +21,7 @@ namespace OverToolkit.Mvvm
         /// <param name="storage">Хранилище.</param>
         /// <param name="value">Значение.</param>
         /// <param name="propertyName">Имя свойства.</param>
-        /// <returns>Возвращает <see cref="true"/> или <see cref="false"/> в зависимости от успеха операции.</returns>
+        /// <returns>Возвращает true или false в зависимости от успеха операции.</returns>
         public virtual bool Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
         {
             if (Equals(storage, value))

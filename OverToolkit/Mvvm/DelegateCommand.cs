@@ -33,7 +33,7 @@ namespace OverToolkit.Mvvm
         /// Определяет, можно ли выполнить действие.
         /// </summary>
         /// <param name="parameter">Пустой параметр.</param>
-        /// <returns><see cref="bool"/> или <see cref="false"/>.</returns>
+        /// <returns>bool или false.</returns>
         [DebuggerStepThrough]
         public bool CanExecute(object parameter = null)
         {
@@ -93,7 +93,7 @@ namespace OverToolkit.Mvvm
         /// Определяет, можно ли выполнить действие.
         /// </summary>
         /// <param name="parameter">Пустой параметр.</param>
-        /// <returns><see cref="bool"/> или <see cref="false"/>.</returns>
+        /// <returns>bool или false.</returns>
         [DebuggerStepThrough]
         public bool CanExecute(object parameter = null)
         {
