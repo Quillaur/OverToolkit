@@ -117,5 +117,110 @@ namespace OverToolkit.Shell
                 return;
             ApplicationView.GetForCurrentView().TitleBar.ButtonPressedBackgroundColor = ((SolidColorBrush)e.NewValue).Color;
         }
+
+        /// <summary>
+        /// Свойство зависимостей цвета элементов кнопок управления окном.
+        /// </summary>
+        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached("Foreground",
+            typeof(SolidColorBrush), typeof(TitleBar), new PropertyMetadata(null, OnForegroundPropertyChanged));
+
+        /// <summary>
+        /// Получает цвет элементов кнопок управления окном.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        public static SolidColorBrush GetForeground(DependencyObject d) => (SolidColorBrush)d.GetValue(ForegroundProperty);
+
+        /// <summary>
+        /// Задает цвет элементов кнопок управления окном.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="value">Значение кисти.</param>
+        public static void SetForeground(DependencyObject d, SolidColorBrush value)
+        {
+            d.SetValue(ForegroundProperty, value);
+        }
+
+        /// <summary>
+        /// Обрабатывает изменение цвета кнопок управления окном.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="e">Данные обработчика события.</param>
+        private static void OnForegroundPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Desktop && DeviceTypeHelper.GetDeviceFormFactorType() !=
+                DeviceFormFactorType.Tablet)
+                return;
+            ApplicationView.GetForCurrentView().TitleBar.ForegroundColor = ((SolidColorBrush)e.NewValue).Color;
+        }
+
+        /// <summary>
+        /// Свойство зависимостей цвета элементов кнопок управления окном при наведении.
+        /// </summary>
+        public static readonly DependencyProperty ButtonHoverForegroundProperty = DependencyProperty.RegisterAttached("ButtonHoverForeground",
+            typeof(SolidColorBrush), typeof(TitleBar), new PropertyMetadata(null, OnButtonHoverForegroundPropertyChanged));
+
+        /// <summary>
+        /// Получает цвет элементов кнопок управления окном при наведении.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        public static SolidColorBrush GetButtonHoverForeground(DependencyObject d) => (SolidColorBrush)d.GetValue(ButtonHoverForegroundProperty);
+
+        /// <summary>
+        /// Задает цвет элементов кнопок управления окном при наведении.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="value">Значение кисти.</param>
+        public static void SetButtonHoverForeground(DependencyObject d, SolidColorBrush value)
+        {
+            d.SetValue(ButtonHoverForegroundProperty, value);
+        }
+
+        /// <summary>
+        /// Обрабатывает изменение цвета кнопок управления окном при наведении.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="e">Данные обработчика события.</param>
+        private static void OnButtonHoverForegroundPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Desktop && DeviceTypeHelper.GetDeviceFormFactorType() !=
+                DeviceFormFactorType.Tablet)
+                return;
+            ApplicationView.GetForCurrentView().TitleBar.ButtonHoverForegroundColor = ((SolidColorBrush)e.NewValue).Color;
+        }
+
+        /// <summary>
+        /// Свойство зависимостей цвета элементов кнопок управления окном при нажатии.
+        /// </summary>
+        public static readonly DependencyProperty ButtonPressedForegroundProperty = DependencyProperty.RegisterAttached("ButtonPressedForeground",
+            typeof(SolidColorBrush), typeof(TitleBar), new PropertyMetadata(null, OnButtonPressedForegroundPropertyChanged));
+
+        /// <summary>
+        /// Получает цвет элементов кнопок управления окном при нажатии.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        public static SolidColorBrush GetButtonPressedForeground(DependencyObject d) => (SolidColorBrush)d.GetValue(ButtonPressedForegroundProperty);
+
+        /// <summary>
+        /// Задает цвет элементов кнопок управления окном при нажатии.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="value">Значение кисти.</param>
+        public static void SetButtonPressedForeground(DependencyObject d, SolidColorBrush value)
+        {
+            d.SetValue(ButtonPressedForegroundProperty, value);
+        }
+
+        /// <summary>
+        /// Обрабатывает изменение цвета кнопок управления окном при нажатии.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="e">Данные обработчика события.</param>
+        private static void OnButtonPressedForegroundPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Desktop && DeviceTypeHelper.GetDeviceFormFactorType() !=
+                DeviceFormFactorType.Tablet)
+                return;
+            ApplicationView.GetForCurrentView().TitleBar.ButtonPressedForegroundColor = ((SolidColorBrush)e.NewValue).Color;
+        }
     }
 }
