@@ -1,4 +1,5 @@
-﻿using OverToolkit.Enums;
+﻿using System;
+using OverToolkit.Enums;
 using OverToolkit.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -10,6 +11,40 @@ namespace OverToolkit.Shell
     /// </summary>
     public static class StatusBar
     {
+        /// <summary>
+        /// Свойство зависимостей видимости панели состояния.
+        /// </summary>
+        public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached("IsVisible",
+            typeof(bool), typeof(StatusBar), new PropertyMetadata(null, IsVisiblePropertyChanged));
+
+        /// <summary>
+        /// Получает значение видимости панели состояния.
+        /// </summary>
+        public static bool GetIsVisible(DependencyObject d) => (bool)d.GetValue(IsVisibleProperty);
+
+        /// <summary>
+        /// Задает значение видимости панели состояния.
+        /// </summary>
+        public static void SetIsVisible(DependencyObject d, bool value)
+        {
+            d.SetValue(IsVisibleProperty, value);
+        }
+
+        /// <summary>
+        /// Обрабатывает изменение видимости панели состояния.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="e">Данные обработчика события.</param>
+        private static async void IsVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
+                return;
+            if ((bool)e.NewValue)
+                await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ShowAsync();
+            else
+                await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
+        }
+
         /// <summary>
         /// Свойство зависимостей фонового цвета панели состояния.
         /// </summary>

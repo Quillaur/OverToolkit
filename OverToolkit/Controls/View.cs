@@ -1,6 +1,5 @@
 ﻿using OverToolkit.Enums;
 using OverToolkit.Helpers;
-using System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,17 +17,19 @@ namespace OverToolkit.Controls
         public View()
         {
             SizeChanged += View_SizeChanged;
+            Shell.TitleBar.SetIsVisible(this, true);
+            Shell.StatusBar.SetIsVisible(this, true);
         }
 
-        private async void View_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void View_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
                 return;
 
             if (ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Portrait)
-                await StatusBar.GetForCurrentView().ShowAsync();
+                Shell.StatusBar.SetIsVisible(this, true);
             else
-                await StatusBar.GetForCurrentView().HideAsync();
+                Shell.StatusBar.SetIsVisible(this, false);
         }
     }
 }
