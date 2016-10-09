@@ -109,8 +109,11 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\INavigationHelper.cs" />
+    <Compile Include="Common\Locator.cs" />
     <Compile Include="Common\Messages.cs" />
     <Compile Include="Controls\View.cs" />
+    <Compile Include="Converters\NullableToBooleanConverter.cs" />
     <Compile Include="Enums\DeviceFormFactorType.cs" />
     <Compile Include="Helpers\DeviceTypeHelper.cs" />
     <Compile Include="Helpers\HttpHelper.cs" />
