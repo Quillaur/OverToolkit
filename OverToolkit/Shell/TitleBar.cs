@@ -152,19 +152,19 @@ namespace OverToolkit.Shell
         }
 
         /// <summary>
-        /// Свойство зависимостей цвета элементов кнопок управления окном.
+        /// Свойство зависимостей цвета заголовка и кнопок управления окном.
         /// </summary>
         public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached("Foreground",
             typeof(SolidColorBrush), typeof(TitleBar), new PropertyMetadata(null, OnForegroundPropertyChanged));
 
         /// <summary>
-        /// Получает цвет элементов кнопок управления окном.
+        /// Получает цвет заголовка и кнопок управления окном.
         /// </summary>
         /// <param name="d">Объект зависимостей.</param>
         public static SolidColorBrush GetForeground(DependencyObject d) => (SolidColorBrush)d.GetValue(ForegroundProperty);
 
         /// <summary>
-        /// Задает цвет элементов кнопок управления окном.
+        /// Задает цвет заголовка и кнопок управления окном.
         /// </summary>
         /// <param name="d">Объект зависимостей.</param>
         /// <param name="value">Значение кисти.</param>
@@ -174,7 +174,7 @@ namespace OverToolkit.Shell
         }
 
         /// <summary>
-        /// Обрабатывает изменение цвета кнопок управления окном.
+        /// Обрабатывает изменение цвета заголовка и кнопок управления окном.
         /// </summary>
         /// <param name="d">Объект зависимостей.</param>
         /// <param name="e">Данные обработчика события.</param>
@@ -184,6 +184,41 @@ namespace OverToolkit.Shell
                 DeviceFormFactorType.Tablet)
                 return;
             ApplicationView.GetForCurrentView().TitleBar.ForegroundColor = ((SolidColorBrush)e.NewValue).Color;
+        }
+
+        /// <summary>
+        /// Свойство зависимостей цвета заголовка и элементов кнопок управления неактивным окном.
+        /// </summary>
+        public static readonly DependencyProperty InactiveForegroundProperty = DependencyProperty.RegisterAttached("InactiveForeground",
+            typeof(SolidColorBrush), typeof(TitleBar), new PropertyMetadata(null, OnInactiveForegroundPropertyChanged));
+
+        /// <summary>
+        /// Получает цвет заголовка и кнопок управления неактивным окном.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        public static SolidColorBrush GetInactiveForeground(DependencyObject d) => (SolidColorBrush)d.GetValue(InactiveForegroundProperty);
+
+        /// <summary>
+        /// Задает цвет заголовка и кнопок управления неактивным окном.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="value">Значение кисти.</param>
+        public static void SetInactiveForeground(DependencyObject d, SolidColorBrush value)
+        {
+            d.SetValue(InactiveForegroundProperty, value);
+        }
+
+        /// <summary>
+        /// Обрабатывает изменение цвета заголовка и кнопок управления неактивным окном.
+        /// </summary>
+        /// <param name="d">Объект зависимостей.</param>
+        /// <param name="e">Данные обработчика события.</param>
+        private static void OnInactiveForegroundPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Desktop && DeviceTypeHelper.GetDeviceFormFactorType() !=
+                DeviceFormFactorType.Tablet)
+                return;
+            ApplicationView.GetForCurrentView().TitleBar.InactiveForegroundColor = ((SolidColorBrush)e.NewValue).Color;
         }
 
         /// <summary>
